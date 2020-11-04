@@ -43,6 +43,7 @@ module.exports = {
     config.resolve.alias
       .set('@', resolve('src'))
       .set('assets', resolve('src/assets'))
+      .set('components', resolve('src/components'))
     // 保留空格
     config.module
       .rule('vue')

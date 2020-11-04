@@ -1,3 +1,5 @@
 <template>
-  <div class="agent">aaa</div>
+  <div class="agent">
+    <tw-button>aaa</tw-button>
+  </div>
 </template>

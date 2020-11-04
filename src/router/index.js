@@ -5,6 +5,10 @@ Vue.use(VueRouter)
 
 const common = [
   {
+    path: '/',
+    redirect: 'agent-list'
+  },
+  {
     path: '*',
     name: '404',
     component: () => import('@/views/common/404'),
