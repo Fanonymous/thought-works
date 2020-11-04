@@ -9,7 +9,7 @@ module.exports = {
   publicPath: './', // history模式、多页面不可用
   outputDir: 'dist',
   assetsDir: 'static', // 打包静态资源
-  lintOnSave: false,
+  lintOnSave: !IS_PROD,
   productionSourceMap: false, // 生产环境的 source map
   devServer: {
     port: 9007, // 端口
