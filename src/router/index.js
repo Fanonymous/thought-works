@@ -1,27 +1,37 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-
+import agent from './modules/agent'
 Vue.use(VueRouter)
 
-const routes = [
+const common = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '*',
+    name: '404',
+    component: () => import('@/views/common/404'),
+    meta: {
+      title: '页面不见了'
+    }
   }
 ]
+const staticRouters = [
+  ...agent,
+  ...common
+]
 
-const router = new VueRouter({
-  routes
+const createRouter = () =>
+  new VueRouter({
+    scrollBehavior (to, from, savedPosition) {
+      if (savedPosition && to.meta.keepAlive) {
+        return savedPosition
+      }
+      return { x: 0, y: 0 }
+    },
+    routes: staticRouters
+  })
+const router = createRouter()
+
+router.beforeEach((to, from, next) => {
+  next()
 })
 
 export default router
