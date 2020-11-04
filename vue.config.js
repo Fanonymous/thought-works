@@ -53,6 +53,19 @@ module.exports = {
         options.compilerOptions.preserveWhitespace = true
         return options
       })
+    // svg 组件
+    const svgRule = config.module.rule("svg")
+    svgRule.uses.clear()
+    svgRule.exclude.add(/node_modules/)
+    svgRule
+    .test(/\.svg$/)
+    .use("svg-sprite-loader")
+    .loader("svg-sprite-loader")
+    .options({ symbolId: "icon-[name]" })
+    
+    const imagesRule = config.module.rule("images")
+    imagesRule.exclude.add(resolve("src/icons"))
+    config.module.rule("images").test(/\.(png|jpe?g|gif|svg)(\?.*)?$/)
 
     config.when(!IS_PROD, config => config.devtool('cheap-source-map'))
     config.when(IS_PROD, config => {

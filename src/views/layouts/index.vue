@@ -11,6 +11,9 @@
   </div>
 </template>
 <style lang="scss" scoped>
+.layout-content{
+  max-width: 1200px;
+}
 .router-fade-enter-active,.router-fade-leave-active {
   transition: opacity 0.5s;
 }
