@@ -1,4 +1,4 @@
 module.exports = {
   title: 'cruise',
-  baseUrl: ''
+  cruise: 'http://localhost:3001/'
 }

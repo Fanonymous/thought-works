@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import store from '@/store'
 import VueRouter from 'vue-router'
 import agent from './modules/agent'
 Vue.use(VueRouter)
@@ -35,7 +36,34 @@ const createRouter = () =>
 const router = createRouter()
 
 router.beforeEach((to, from, next) => {
-  next()
+  // 根据token 和store中个人信息判断是否刷新
+  const menu = [
+    {
+      id: '1',
+      label: 'DASHBOARD',
+      icon: 'icon-dashboard'
+    },
+    {
+      id: '2',
+      label: 'AGENT',
+      icon: 'icon-sitemap',
+      url: 'agent-list'
+    },
+    {
+      id: '3',
+      label: 'MY CRUISE',
+      icon: 'icon-boat'
+    },
+    {
+      id: '4',
+      label: 'HELP',
+      icon: 'icon-life-bouy'
+    }
+  ]
+  setTimeout(() =>{
+    store.commit('common/SET_MENU_LIST', menu)
+    next()
+  }, 500)
 })
 
 export default router

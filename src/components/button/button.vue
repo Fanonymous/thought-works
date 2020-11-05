@@ -1,12 +1,12 @@
 <template>
-  <button
-    class="tw-button"
-    @click="handleClick"
-    :disabled="disabled"
-    :class="[]"
-  >
-    <slot></slot>
-  </button>
+  <div class="button" @click="handleClick">
+    <div class="button-inner" :class="[`tw-button-${type}`]">
+      <span v-if="prefix" class="prefix" :class="[prefix]"></span>
+      <slot></slot>
+      <span v-if="suffix" class="suffix" :class="[suffix]"></span>
+      <span v-if="onlyIcon" class="only-icon" :class="[onlyIcon]"></span>
+    </div>
+  </div>
 </template>
 <script>
 export default {
@@ -17,6 +17,15 @@ export default {
       default: 'default'
     },
     disabled: Boolean,
+    prefix: {
+      type: String
+    },
+    suffix: {
+      type: String
+    },
+    onlyIcon: {
+      type: String
+    }
   },
   methods: {
     handleClick(evt) {
@@ -25,3 +34,48 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.button{
+  display: inline-block;
+}
+.button-inner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  height: 30px;
+  padding: 0 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.tw-button-default{
+  background-color: #EFEFEF;
+  color: #455567;
+}
+.tw-button-primary{
+  background-color: #00B4CF;
+  color: #fff;
+}
+.prefix{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  margin-right: 5px;
+}
+.suffix{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: #425465;
+  margin-left: 5px;
+}
+.only-icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+</style>
+

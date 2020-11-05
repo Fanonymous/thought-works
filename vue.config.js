@@ -44,6 +44,7 @@ module.exports = {
       .set('@', resolve('src'))
       .set('assets', resolve('src/assets'))
       .set('components', resolve('src/components'))
+      .set('api', resolve('src/api'))
     // 保留空格
     config.module
       .rule('vue')
@@ -56,16 +57,23 @@ module.exports = {
     // svg 组件
     const svgRule = config.module.rule("svg")
     svgRule.uses.clear()
-    svgRule.exclude.add(/node_modules/)
     svgRule
-    .test(/\.svg$/)
-    .use("svg-sprite-loader")
-    .loader("svg-sprite-loader")
-    .options({ symbolId: "icon-[name]" })
-    
-    const imagesRule = config.module.rule("images")
-    imagesRule.exclude.add(resolve("src/icons"))
-    config.module.rule("images").test(/\.(png|jpe?g|gif|svg)(\?.*)?$/)
+      .test(/\.svg$/)
+      .include.add(path.resolve(__dirname, './src/icons'))
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'icon-[name]'
+      })
+    const fileRule = config.module.rule('file')
+    fileRule.uses.clear()
+    fileRule
+      .test(/\.svg$/)
+      .exclude.add(path.resolve(__dirname, './src/icons'))
+      .end()
+      .use('file-loader')
+      .loader('file-loader')
 
     config.when(!IS_PROD, config => config.devtool('cheap-source-map'))
     config.when(IS_PROD, config => {
