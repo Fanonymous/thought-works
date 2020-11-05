@@ -1,6 +1,6 @@
 <template>
   <div class="agent">
-    <header-nav :agents-list="agentsList"></header-nav>
+    <header-nav></header-nav>
     <menu-search @menuClick="handleMenuClick"></menu-search>
     <table-list :agents-list="agentsList"></table-list>
   </div>

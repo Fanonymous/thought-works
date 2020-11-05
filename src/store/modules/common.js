@@ -1,6 +1,6 @@
 const state = {
   menu_list: [],
-  sidebar_fold: true
+  sidebar_fold: false
 }
 const mutations = {
   SET_MENU_LIST (state, val) {

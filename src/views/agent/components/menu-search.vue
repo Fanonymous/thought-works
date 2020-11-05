@@ -96,8 +96,8 @@ export default {
   justify-content: flex-end;
   align-items: center;
   padding-right: 10px;
-  font-size: 18px;
   span{
+    font-size: 20px;
     cursor: pointer;
   }
   .icon-th-list{

@@ -8,14 +8,28 @@
         <span class="menu-icon" :class="[item.icon]"></span>
         <span class="nemu-lable">{{ item.label }}</span>
       </div>
+      <div class="history">
+        <div class="label">History</div>
+        <div class="content">
+          <div v-for="item in history" :key="item.id" class="history-item">{{ item.content }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex'
 export default {
+  data () {
+    return {
+      history: []
+    }
+  },
   computed: {
     ...mapState('common', ['menu_list'])
+  },
+  created () {
+    this.initHistory()
   },
   methods: {
     ...mapMutations('common', ['SET_SIDEBAR_FOLD']),
@@ -28,6 +42,16 @@ export default {
     },
     closeMenu () {
       this.SET_SIDEBAR_FOLD(false)
+    },
+    initHistory () {
+      let i = 1
+      while (i < 14) {
+        this.history.push({
+          id: i,
+          content: `bjstdmngbgr${ i }/Acceptance_test`
+        })
+        i ++
+      }
     }
   }
 }
@@ -44,11 +68,13 @@ export default {
   background-color: #2D4054;
   .menu-item{
     color: #B1B7BE;
-    font-size: 20px;
-    padding: 20px 0 20px 20px;
+    font-size: 18px;
+    padding: 0 20px;
+    height: 45px;
+    line-height: 45px;
     cursor: pointer;
     &:hover{
-      background-color: #1e5690;
+      color: #00b4cf;
     }
     .nemu-lable{
       padding-left: 16px;
@@ -56,6 +82,41 @@ export default {
   }
   .active-menu{
     color: #26798F;
+  }
+  .history{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    .label{
+      font-size: 24px;
+      color: #ccc;
+    }
+    .content{
+      font-size: 12px;
+      color: #999;
+      margin-top: 6px;;
+    }
+    .history-item{
+      cursor: pointer;
+      padding: 5px 0;
+      &::before{
+        content: '';
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        background-color: #999;
+        vertical-align: middle;
+        margin-right: 12px;
+        border-radius: 4px;
+      }
+      &:hover{
+        color: #00b4cf;
+      }
+    }
   }
 }
 .close-btn{

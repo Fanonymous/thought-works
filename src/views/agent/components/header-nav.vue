@@ -47,13 +47,8 @@
   </div>
 </template>
 <script>
+import { getAgentsList } from 'api/agent'
 export default {
-  props: {
-    agentsList: {
-      type: Array,
-      default: () => { return [] }
-    }
-  },
   data() {
     return {
       building: '0',
@@ -63,15 +58,18 @@ export default {
       virtual: ''
     }
   },
-  watch: {
-    agentsList: {
-      handler (n) {
+  created () {
+    this.getAgentsList()
+  },
+  methods: {
+    getAgentsList () {
+      getAgentsList().then(res => {
         let building = []
         let idle = []
         let physical = []
         let virtual = []
-        this.total = n.length
-        n.forEach(item => {
+        this.total = res.length
+        res.forEach(item => {
           item.status === 'building' && (building.push(item))
           item.status === 'idle' && (idle.push(item))
           item.type === 'physical' && (physical.push(item))
@@ -81,9 +79,7 @@ export default {
         this.idle = idle.length
         this.physical = physical.length
         this.virtual = virtual.length
-      },
-      immediate: true,
-      deep: true
+      })
     }
   }
 }
