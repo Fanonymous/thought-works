@@ -2,7 +2,7 @@
   <div class="agent">
     <header-nav></header-nav>
     <menu-search @menuClick="handleMenuClick"></menu-search>
-    <table-list :agents-list="agentsList"></table-list>
+    <table-list :agents-list="agentsList" @updateList="handleMenuClick(type)"></table-list>
   </div>
 </template>
 <script>
@@ -37,4 +37,15 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.agent{
+  margin-left: 20px;
+}
+@media screen and (max-width: 1024px) {
+  .agent{
+    margin: 0 10px !important;
+  }
+}
+</style>
+
 

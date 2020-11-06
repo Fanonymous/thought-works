@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <tw-row :gutter="15">
-      <tw-col :xl="8" :lg="8" :md="12">
+      <tw-col :xl="8" :lg="8" :md="12" :xs="12">
         <div class="building message">
           <span class="title">Building</span>
           <div class="icon">
@@ -10,7 +10,7 @@
           <span class="number">{{ building }}</span>
         </div>
       </tw-col>
-      <tw-col :xl="8" :lg="8" :md="12">
+      <tw-col :xl="8" :lg="8" :md="12" :xs="12">
         <div class="idle message">
           <span class="title">Idle</span>
           <div class="icon">
@@ -22,23 +22,17 @@
       <tw-col :xl="8" :lg="8" :md="24">
         <div class="account message">
           <tw-row :gutter="10">
-            <tw-col :xl="24" :lg="24" :md="8" :xs="8">
-              <tw-row :gutter="10">
-                <tw-col :xl="12" :lg="12" :md="24" class="account-title">ALL</tw-col>
-                <tw-col :xl="12" :lg="12" :md="24" class="account-total">{{ total }}</tw-col>
-              </tw-row>
+            <tw-col :xl="8" :lg="24" :md="8" :xs="8">
+              <div class="account-title">ALL</div>
+              <div class="account-total">{{ total }}</div>
             </tw-col>
-            <tw-col :xl="24" :lg="24" :md="8" :xs="8">
-              <tw-row :gutter="10">
-                <tw-col :xl="12" :lg="12" :md="24" class="account-title">PHYSICAL</tw-col>
-                <tw-col :xl="12" :lg="12" :md="24" class="account-total">{{ physical }}</tw-col>
-              </tw-row>
+            <tw-col :xl="8" :lg="24" :md="8" :xs="8">
+              <div class="account-title">PHYSICAL</div>
+              <div class="account-total">{{ physical }}</div>
             </tw-col>
-            <tw-col :xl="24" :lg="24" :md="8" :xs="8">
-              <tw-row :gutter="10">
-                <tw-col :xl="12" :lg="12" :md="24" class="account-title">VIRTUAL</tw-col>
-                <tw-col :xl="12" :lg="12" :md="24" class="account-total">{{ virtual }}</tw-col>
-              </tw-row>
+            <tw-col :xl="8" :lg="24" :md="8" :xs="8">
+              <div class="account-title">VIRTUAL</div>
+              <div class="account-total">{{ virtual }}</div>
             </tw-col>
           </tw-row>
         </div>
@@ -86,17 +80,17 @@ export default {
 </script>
 <style lang="scss" scoped>
 .header{
-  margin: 10px;
+  margin-top: 10px;
 }
 .message{
   position: relative;
   width: 100%;
-  height: 135px;
+  height: 144px;
   color: #fff;
   .title{
     position: absolute;
-    top: 12px;
-    left: 8px;
+    top: 16px;
+    left: 12px;
     font: 18px blod;
   }
   .icon{
@@ -129,24 +123,31 @@ export default {
 .account{
   background-color: #fff;
   color: #333;
-  padding: 20px;
+  padding: 30px 20px;
+  ::v-deep .tw-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    .tw-col{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+    }
+  }
   &-title{
     font-size: 12px;
-    padding: 10px 0;
   }
   &-total{
     font-size: 20px;
     font-weight: 600;
-    text-align: right;
   }
 }
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
   .account{
     margin: 10px 0;
-    &-title,&-total{
-      text-align: center !important;
-      padding: 15px 0;
-    }
   }
 }
 </style>

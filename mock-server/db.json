@@ -54,7 +54,10 @@
         "Firefox",
         "Safari",
         "Ubuntu",
-        "Chrome"
+        "Chrome",
+        "aaaaaaaaaaaaa",
+        "ddddddddddddddd",
+        "fffffffffffffff"
       ],
       "id": 4
     },
@@ -65,7 +68,9 @@
       "type": "physical",
       "ip": "192.168.1.110",
       "location": "/var/lib/cruise-agent",
-      "resources": [],
+      "resources": [
+        "Firefox"
+      ],
       "id": 5
     },
     {
@@ -76,7 +81,6 @@
       "ip": "192.168.1.103",
       "location": "/var/lib/cruise-agent",
       "resources": [
-        "Firefox",
         "Safari",
         "Ubuntu",
         "Chrome"

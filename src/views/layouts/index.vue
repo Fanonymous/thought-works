@@ -2,7 +2,12 @@
   <div class="layout-content">
     <header-bar class="layout-header"></header-bar>
     <div class="main">
-      <side-bar v-if="sidebar_fold"></side-bar>
+      <!-- <transition name="">
+        <side-bar v-if="sidebar_fold"></side-bar>
+      </transition> -->
+      <el-collapse-transition>
+        <side-bar v-if="sidebar_fold"></side-bar>
+      </el-collapse-transition>
       <div class="content">
         <transition name="router-fade" mode="out-in">
           <keep-alive>

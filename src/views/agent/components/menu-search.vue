@@ -9,7 +9,7 @@
       <tw-col :xl="16" :lg="16" :md="24">
         <tw-row>
           <tw-col :xl="12" :lg="24" :md="24" class="search-row">
-            <tw-input>
+            <tw-input class="search__input">
               <template slot="prefix">
                 <span class="icon-search"></span>
               </template>
@@ -52,11 +52,16 @@ export default {
 </script>
 <style lang="scss" scoped>
 .search{
-  margin: 10px;
-  background-color: #fff;
-  height: 50px;
-  ::v-deep .tw-row{
+  margin-top: 10px;
+  ::v-deep .tw-col{
     height: 50px;
+    background-color: #fff;
+  }
+  &__input{
+    background-color: #F3F3F3;
+    ::v-deep input{
+      background-color: #F3F3F3;
+    }
   }
 }
 .before-menu,.after-menu{
@@ -64,7 +69,6 @@ export default {
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  background-color: #fff;
   cursor: pointer;
   .menu-item{
     flex: 1;
@@ -114,6 +118,9 @@ export default {
   .after-menu{
     display: flex;
     margin-top: 10px;
+  }
+  .search{
+    margin-top: 0 !important;
   }
 }
 @media screen and (max-width: 1024px) {

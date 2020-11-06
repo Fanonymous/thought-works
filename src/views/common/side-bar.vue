@@ -68,7 +68,7 @@ export default {
   background-color: #2D4054;
   .menu-item{
     color: #B1B7BE;
-    font-size: 18px;
+    font-size: 16px;
     padding: 0 20px;
     height: 45px;
     line-height: 45px;

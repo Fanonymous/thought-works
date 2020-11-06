@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     handleInput (e) {
-      this.$emit('input', e)
+      this.$emit('input', e.target.value)
     }
   }
 }
@@ -35,13 +35,14 @@ export default {
   border-radius: 4px;
   .prefix{
     padding-left: 5px;
+    color: #AAAAAA;
   }
   .input{
     flex: 1;
     width: 0;
     border: 0;
-    height: 26px;
-    line-height: 26px;
+    height: 30px;
+    line-height: 30px;
     color: #606266;
     outline: none;
     transition: border-color .2s cubic-bezier(.645, .045, .355, 1);

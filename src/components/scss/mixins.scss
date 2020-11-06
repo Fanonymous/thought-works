@@ -1,8 +1,6 @@
-@import "./function.scss";
 @import "./var.scss";
+@import "./config.scss";
 
-/* Break-points
- -------------------------- */
 @mixin res($key, $map: $--breakpoints) {
   // 循环断点Map，如果存在则返回
   @if map-has-key($map, $key) {
@@ -14,89 +12,10 @@
   }
 }
 
-/* Scrollbar
- -------------------------- */
-@mixin scroll-bar {
-  $--scrollbar-thumb-background: #b4bccc;
-  $--scrollbar-track-background: #fff;
-
-  &::-webkit-scrollbar {
-    z-index: 11;
-    width: 6px;
-
-    &:horizontal {
-      height: 6px;
-    }
-
-    &-thumb {
-      border-radius: 5px;
-      width: 6px;
-      background: $--scrollbar-thumb-background;
-    }
-
-    &-corner {
-      background: $--scrollbar-track-background;
-    }
-
-    &-track {
-      background: $--scrollbar-track-background;
-
-      &-piece {
-        background: $--scrollbar-track-background;
-        width: 6px;
-      }
-    }
-  }
-}
-
-/* Placeholder
- -------------------------- */
-@mixin placeholder {
-  &::-webkit-input-placeholder {
-    @content
-  }
-
-  &::-moz-placeholder {
-    @content
-  }
-
-  &:-ms-input-placeholder {
-    @content
-  }
-}
-
-/* BEM
- -------------------------- */
-@mixin b($block) {
-  $B: $namespace+'-'+$block !global;
-
+ @mixin b($block) {
+  $B: $namespace + '-' + $block !global;
   .#{$B} {
     @content;
-  }
-}
-
-@mixin e($element) {
-  $E: $element !global;
-  $selector: &;
-  $currentSelector: "";
-  @each $unit in $element {
-    $currentSelector: #{$currentSelector + "." + $B + $element-separator + $unit + ","};
-  }
-
-  @if hitAllSpecialNestRule($selector) {
-    @at-root {
-      #{$selector} {
-        #{$currentSelector} {
-          @content;
-        }
-      }
-    }
-  } @else {
-    @at-root {
-      #{$currentSelector} {
-        @content;
-      }
-    }
   }
 }
 
@@ -114,54 +33,6 @@
   }
 }
 
-@mixin configurable-m($modifier, $E-flag: false) {
-  $selector: &;
-  $interpolation: '';
-
-  @if $E-flag {
-    $interpolation: $element-separator + $E-flag;
-  }
-
-  @at-root {
-    #{$selector} {
-      .#{$B+$interpolation+$modifier-separator+$modifier} {
-        @content;
-      }
-    }
-  }
-}
-
-@mixin spec-selector($specSelector: '', $element: $E, $modifier: false, $block: $B) {
-  $modifierCombo: '';
-
-  @if $modifier {
-    $modifierCombo: $modifier-separator + $modifier;
-  }
-
-  @at-root {
-    #{&}#{$specSelector}.#{$block+$element-separator+$element+$modifierCombo} {
-      @content
-    }
-  }
-}
-
-@mixin meb($modifier: false, $element: $E, $block: $B) {
-  $selector: &;
-  $modifierCombo: '';
-
-  @if $modifier {
-    $modifierCombo: $modifier-separator + $modifier;
-  }
-
-  @at-root {
-    #{$selector} {
-      .#{$block+$element-separator+$element+$modifierCombo} {
-        @content
-      }
-    }
-  }
-}
-
 @mixin when($state) {
   @at-root {
     &.#{$state-prefix + $state} {
@@ -170,21 +41,66 @@
   }
 }
 
-@mixin extend-rule($name) {
-  @extend #{'%shared-'+$name};
-}
-
-@mixin share-rule($name) {
-  $rule-name: '%shared-'+$name;
-
-  @at-root #{$rule-name} {
-    @content
+@mixin e($name) {
+  &#{$element-separator}#{$name} {
+    @content;
   }
 }
 
-@mixin pseudo($pseudo) {
-  @at-root #{&}#{':#{$pseudo}'} {
-    @content
-  }
+@mixin triangleAfter ($where){
+  &::after{
+    content: '';
+    position: absolute;
+    border: 6px solid white;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    @if $where== 'top' {
+      bottom: -11px;
+      border-top-color: white;
+    }
+    @if $where== 'right' {
+      left: -11px;
+      border-right-color:white;
+    }
+    @if $where== 'left' {
+      right: -11px;
+      border-left-color:white;
+    }
+    @if $where== 'bottom' {
+      top: -11px;
+      border-bottom-color: white;
+    }
+    @content;
+  };
 }
 
+@mixin triangleBefore ($where){
+  &::before{
+    content: '';
+    position: absolute;
+    border: 6px solid rgb(172, 171, 171);
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    @if $where== 'top' {
+      bottom: -12px;
+      border-top-color: rgb(172, 171, 171);
+    }
+    @if $where== 'right' {
+      left:-12px;
+      border-right-color: rgb(172, 171, 171);
+    }
+    @if $where== 'left' {
+      right: -12px;
+      border-left-color: rgb(172, 171, 171);
+    }
+    @if $where== 'bottom' {
+      top: -12px;
+      border-bottom-color: rgb(172, 171, 171);
+    }
+    @content;
+  };
+}

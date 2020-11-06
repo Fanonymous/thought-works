@@ -14,3 +14,11 @@ export function getAgentsList(type) {
     }
   })
 }
+
+export function updateAgentById(id, data) {
+  return service({
+    url: baseApi.cruise + `agents/${ id }`,
+    method: 'put',
+    data
+  })
+}

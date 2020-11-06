@@ -1,5 +1,5 @@
 <template>
-  <div class="button" @click="handleClick">
+  <div class="button">
     <div class="button-inner" :class="[`tw-button-${type}`]">
       <span v-if="prefix" class="prefix" :class="[prefix]"></span>
       <slot></slot>
@@ -27,11 +27,6 @@ export default {
       type: String
     }
   },
-  methods: {
-    handleClick(evt) {
-      this.$emit('click', evt)
-    }
-  }
 }
 </script>
 <style lang="scss" scoped>
@@ -50,11 +45,24 @@ export default {
 }
 .tw-button-default{
   background-color: #EFEFEF;
-  color: #455567;
+  color:#324558;
+  &:hover{
+    background-color: #e1e4e6;
+  }
 }
 .tw-button-primary{
-  background-color: #00B4CF;
+  background-color:#00B4CF;
   color: #fff;
+  &:hover{
+    background-color: #01869A;
+  }
+}
+.tw-button-warning{
+  background-color: #435466;
+  color: #fff;
+  &:hover{
+    background-color: #2D4054;
+  }
 }
 .prefix{
   display: flex;

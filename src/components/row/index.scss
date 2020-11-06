@@ -1,4 +1,3 @@
-@import "../scss/var.scss";
 @import "../scss//mixins.scss";
 @import "../scss/utils.scss";
 
@@ -6,14 +5,12 @@
   position: relative;
   box-sizing: border-box;
   @include utils-clearfix;
-
   @include m(flex) {
     display: flex;
     &:before,
     &:after {
       display: none;
     }
-
     @include when(justify-center) {
       justify-content: center;
     }
@@ -34,6 +31,5 @@
       align-items: flex-end;
     }
   }
-
 }
 

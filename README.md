@@ -1,4 +1,4 @@
-# thought-works
+# cruise
 
 ## Project setup
 ```
@@ -25,5 +25,6 @@ npm run test:unit
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 项目说明
+## 1.项目采用vue 2.X，未使用任何UI框架和css类库
+## 2.

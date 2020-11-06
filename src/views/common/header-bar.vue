@@ -8,8 +8,24 @@
         <svg-icon class="logo-svg" icon-class="logo"></svg-icon>
       </div>
       <div class="avatar">
-        <img class="avatar-img" src="~assets/img/avatar.jpg" alt="avatar">
-        <span class="icon-angle-down"></span>
+        <tw-popover>
+          <div class="avatar-placement">
+            <img class="avatar-img" src="~assets/img/avatar.jpg" alt="avatar">
+            <span class="icon-angle-down"></span>
+          </div>
+          <template slot="content">
+            <div class="dropdown">
+              <div class="dropdown-item">
+                <span class="icon-id-card"></span>
+                <span class="dropdown-item__content">Profile</span>
+              </div>
+              <div class="dropdown-item">
+                <span class="icon-sign-in"></span>
+                <span class="dropdown-item__content">Sign Out</span>
+              </div>
+            </div>
+          </template>
+        </tw-popover>
       </div>
     </div>
   </div>
@@ -69,6 +85,11 @@ export default {
     display: flex;
     align-items: center;
     z-index: 99;
+    .avatar-placement{
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
     .avatar-img{
       width: 40px;
       height: 40px;
@@ -77,6 +98,20 @@ export default {
     .icon-angle-down{
       font-size: 18px;
       padding-left: 6px;
+    }
+  }
+}
+.dropdown{
+  padding: 10px 0;
+  &-item{
+    padding: 8px 12px;
+    color: #2D4050;
+    cursor: pointer;
+    &__content{
+      padding-left: 8px;
+    }
+    &:hover{
+      background-color: #efefef;
     }
   }
 }
